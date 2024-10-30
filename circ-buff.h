@@ -9,6 +9,16 @@ struct CircBuff {
 	size_t size = 0;
     size_t end = 0;
 
+    void stats() {
+        std::cout << "Cap: " << capacity << " Start: " << start << " End: " << end << " Sz: " << size << std::endl;
+    }
+
+    void clear() {
+        start = 0;
+        end = 0;
+        size = 0;
+    }
+
     void add(const T& value) {
         //Set value at the current end position
         data[end] = value;
@@ -26,6 +36,27 @@ struct CircBuff {
             //must coincide
             start = end;
         }
+    }
+
+    T& take() {
+        if (size == 0) {
+            throw std::out_of_range("Buffer is empty.");
+        }
+
+        //Get the value at the front
+        T& result = at(0);
+
+        //Shrink
+        --size;
+
+        //Move start forward
+        start = (start + 1) % capacity;
+
+        return result;
+    }
+
+    T& peek() {
+        return at(0);
     }
 
     T& at(size_t pos) {
