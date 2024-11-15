@@ -94,5 +94,5 @@ void test_add()
 }
 
 int main() {
-    test_take();
+    test_add();
 }
