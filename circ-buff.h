@@ -7,10 +7,10 @@
 */
 template <size_t CAPACITY, class T>
 struct CircBuff {
-	T data[CAPACITY];
-	size_t start = 0;
-	size_t capacity = CAPACITY;
-	size_t size = 0;
+    T data[CAPACITY];
+    size_t start = 0;
+    size_t capacity = CAPACITY;
+    size_t size = 0;
     size_t end = 0;
 
     void stats() {
